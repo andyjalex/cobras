@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import Social from '../components/Social';
 import cobraImage1 from '../assets/cobra1.jpeg';
@@ -8,30 +8,49 @@ import cobraImage4 from '../assets/cobra4.jpeg';
 import cobraImage5 from '../assets/cobra5.jpeg';
 
 const HomePage = () => {
-    return (
-        <Wrapper>
-        <div className="App">
-        <div className="overlay"></div>
-        <section className="sec1">
-        <ul>
-          <li>C</li>
-          <li>O</li>
-          <li>B</li>
-          <li>R</li>
-          <li>A</li>
-          <li>S</li>
-        </ul>
-        <h2 id="text">COBRAS BEACH 
-        VOLLEYBALL CLUB</h2>
-        </section>
-        <Social />
-        <section className="sec3">
-        main links
-        </section>
-        </div>
+  const [imagesLoaded, setImagesLoaded] = useState(false);
 
-        </Wrapper>
-    )
+
+  useEffect(() => {
+    const images = [cobraImage1, cobraImage2, cobraImage3, cobraImage4, cobraImage5];
+    let loadedCount = 0;
+
+    images.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+      img.onload = () => {
+        loadedCount++;
+        if (loadedCount === images.length) {
+          setImagesLoaded(true);
+        }
+      };
+    });
+  }, []);
+
+  return (
+      <Wrapper imagesLoaded={imagesLoaded}>
+      <div className="App">
+      <div className="overlay"></div>
+      <section className="sec1">
+      <ul>
+        <li>C</li>
+        <li>O</li>
+        <li>B</li>
+        <li>R</li>
+        <li>A</li>
+        <li>S</li>
+      </ul>
+      <h2 id="text">COBRAS BEACH 
+      VOLLEYBALL CLUB</h2>
+      </section>
+      <Social />
+      <section className="sec3">
+      main links
+      </section>
+      </div>
+
+      </Wrapper>
+  )
 }
 
 //
@@ -61,8 +80,14 @@ section {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover; 
-  animation: fadeInBackground 2s forwards ease-in 3s, change-bg 16s infinite ease-in 5s;
+  animation: ${({ imagesLoaded }) =>
+  imagesLoaded
+    ? 'fadeInBackground 2s forwards ease-in 4s, change-bg 16s infinite  6s'
+    : 'none'};
 }
+
+  
+
 .sec1 {
   
   background-size: cover; 
@@ -89,7 +114,7 @@ ul {
     -webkit-background-clip: text;
     background-attachment: fixed;
     background-size: cover;
-    animation: fadeOutText 1s linear 5s;
+    animation: fadeOutText 1.5s forwards 5s ;
 }
 
 ul li {
@@ -122,7 +147,7 @@ ul li {
     opacity: 0;
     z-index: 300;
     animation: fadeInText 4s forwards ;
-    animation-delay: 4s;  
+    animation-delay: 5s;  
 }
 
 @keyframes fadeInTextBackground {
@@ -138,14 +163,13 @@ ul li {
 
 @keyframes fadeInBackground {
     0% { opacity: 0; }
-
     100% { opacity: 1; }
          
 }
 
 @keyframes fadeOutText {
   0% { opacity: 1; }
-   99% { opacity: 0; }
+   99% { opacity: 0; display: none; }
   100% { opacity: 0; display: none; }
 }
 
@@ -178,13 +202,26 @@ ul li:nth-child(6) {
 }
 
 @keyframes change-bg {
-    0% { background-image: url(${cobraImage1}) }
-    25% { background-image: url(${cobraImage2}) }
-    50% { background-image: url(${cobraImage3}) }
-    75% { background-image: url(${cobraImage4}) }
-    100% { background-image: url(${cobraImage5}) }
-
+  0% {
+    background-image: url(${cobraImage1});
+  }
+  20% {
+    background-image: url(${cobraImage2});
+  }
+  40% {
+    background-image: url(${cobraImage3});
+  }
+  60% {
+    background-image: url(${cobraImage4});
+  }
+  80% {
+    background-image: url(${cobraImage5});
+  }
+  100% {
+    background-image: url(${cobraImage1}); /* Loop back to the first image */
+  }
 }
+
 
 
 `
