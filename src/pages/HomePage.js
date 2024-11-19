@@ -27,6 +27,23 @@ const HomePage = () => {
     });
   }, []);
 
+  useEffect(() => {
+    if (imagesLoaded) {
+      const bgElement = document.querySelector(".overlay");
+      let index = 0;
+      const images = [cobraImage1, cobraImage2, cobraImage3, cobraImage4, cobraImage5];
+  
+      const changeBackground = () => {
+        bgElement.style.backgroundImage = `url(${images[index]})`;
+        index = (index + 1) % images.length;
+      };
+  
+      const interval = setInterval(changeBackground, 4000); // Change every 4 seconds
+  
+      return () => clearInterval(interval); // Cleanup on unmount
+    }
+  }, [imagesLoaded]);
+
   return (
       <Wrapper imagesLoaded={imagesLoaded}>
       <div className="App">
@@ -82,7 +99,7 @@ section {
   background-size: cover; 
   animation: ${({ imagesLoaded }) =>
   imagesLoaded
-    ? 'fadeInBackground 2s forwards ease-in 4s, change-bg 16s infinite  6s'
+    ? 'fadeInBackground 2s forwards ease-in 4s'
     : 'none'};
 }
 
@@ -109,12 +126,17 @@ ul {
     padding: 0;
     display: flex;
     opacity: 1;
-    background: url(${cobraImage1}) no-repeat center center;
+    background: url(${cobraImage1}) center center;
     background-clip: text;
+    background-repeat: no-repeat;
     -webkit-background-clip: text;
     background-attachment: fixed;
     background-size: cover;
     animation: fadeOutText 1.5s forwards 5s ;
+
+     @media (max-width: 480px) {
+      flex-flow: column wrap;
+    }
 }
 
 ul li {
@@ -133,7 +155,7 @@ ul li {
       font-size: 10em;
     }
     @media (max-width: 480px) {
-      font-size: 5em;
+      font-size: 8em;
     }
     
 }
@@ -148,6 +170,11 @@ ul li {
     z-index: 300;
     animation: fadeInText 4s forwards ;
     animation-delay: 5s;  
+
+    @media (max-width: 480px) {
+      top: 10%;
+      font-size: 4em;
+    }
 }
 
 @keyframes fadeInTextBackground {
@@ -201,26 +228,7 @@ ul li:nth-child(6) {
     animation-delay: 0.5s
 }
 
-@keyframes change-bg {
-  0% {
-    background-image: url(${cobraImage1});
-  }
-  20% {
-    background-image: url(${cobraImage2});
-  }
-  40% {
-    background-image: url(${cobraImage3});
-  }
-  60% {
-    background-image: url(${cobraImage4});
-  }
-  80% {
-    background-image: url(${cobraImage5});
-  }
-  100% {
-    background-image: url(${cobraImage1}); /* Loop back to the first image */
-  }
-}
+
 
 
 
