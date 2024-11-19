@@ -162,19 +162,24 @@ ul li {
 
 #text {
     position: absolute;
-    font-size: 5em;
+    font-size: 4em;
     color: #fff;
     text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.4);
-    top: 30%;
+    top: 0%;
     opacity: 0;
     z-index: 300;
     animation: fadeInText 4s forwards ;
-    animation-delay: 5s;  
+    animation-delay: 8s;  
 
-    @media (max-width: 480px) {
-      top: 10%;
-      font-size: 4em;
+    @media (min-width: 768px) {
+      top: 15%;
+      font-size: 5em;
     }
+    @media (min-width: 1200px) {
+      top: 15%;
+      font-size: 8em;
+    }
+
 }
 
 @keyframes fadeInTextBackground {
