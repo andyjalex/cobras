@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FaBars } from 'react-icons/fa6'
-import logo from '../assets/logo.png'
+import logo from '../assets/logo.svg'
 import { Link, NavLink } from 'react-router-dom'
 
 const Navbar = () => {
