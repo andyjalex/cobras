@@ -6,6 +6,9 @@ import cobraImage2 from '../assets/cobra2.jpeg';
 import cobraImage3 from '../assets/cobra3.jpeg';
 import cobraImage4 from '../assets/cobra4.jpeg';
 import cobraImage5 from '../assets/cobra5.jpeg';
+import about from '../assets/about.jpg';
+import tournament from '../assets/tournament.jpeg';
+import coaching from '../assets/coaching.jpeg';
 
 const HomePage = () => {
   const [imagesLoaded, setImagesLoaded] = useState(false);
@@ -53,7 +56,6 @@ const HomePage = () => {
       <section className="sec1 ">
       <div className ="overlay"></div>
       <div className="shared-background">
-        
         <ul>
           <li>C</li>
           <li>O</li>
@@ -69,9 +71,26 @@ const HomePage = () => {
       <Social />
       <section className="sec3">
         <div className="main-feature-container">
-          <div className="feature-container">About</div>
-          <div className="feature-container">Tournaments</div>
-          <div className="feature-container">Coaching</div> 
+          <div className="feature">
+            <h2 className="feature__heading">About us</h2>
+            <div className="feature__image-container">
+              <img src={about} alt="about" className="feature__image"/>
+            </div>
+            <p className="feature__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            
+
+          </div>
+          <div className="feature">
+            <h2 className="feature__heading">Tournaments</h2>
+            <img src={tournament} className="feature__image"/>
+            <p className="feature__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          </div>
+          
+          <div className="feature">
+            <h2 className="feature__heading">Coaching</h2>
+            <img src={coaching} className="feature__image"/>
+            <p className="feature__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          </div> 
         </div>
       </section>
       </div>
@@ -127,15 +146,15 @@ section {
   
 
 .sec1 {
-    position: relative;
-    width: 100%;
-    height: 100vh; /* Ensure the section fills the viewport */
-    background-size: cover;
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Ensure the section fills the viewport */
+  background-size: cover;
 }
 
 .sec2 {
- background-color: #FFFA65;
- min-height: 20vh;
+  background-color: #FFFA65;
+  min-height: 20vh;
 }
 
 .sec3 {
@@ -144,32 +163,32 @@ section {
 }
 
 ul {
-    position: absolute;
-    height: 100vh; /* Make the text background take up full screen height */
-    width: 100%;   /* Ensure the width matches */
-    left: 0;
-    top:0;
-    margin: 0;
-    padding: 0;
-    margin-top: 0;
-    justify-content: center;
-    align-items: center; /* Vertically centers the text */
-    z-index: 200;
-    background-clip: text;
-    -webkit-background-clip: text;
-    background-image: url(${cobraImage1}); /* Cobra image for text fill */
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    color: transparent; /* Prevent fill color */
-    animation: fadeInTextBackground 5s forwards, fadeOutText 1s forwards 5s;
-    white-space: nowrap; /* Prevent text from wrapping to the next line */
-    flex-flow: column wrap;
+  position: absolute;
+  height: 100vh; /* Make the text background take up full screen height */
+  width: 100%;   /* Ensure the width matches */
+  left: 0;
+  top:0;
+  margin: 0;
+  padding: 0;
+  margin-top: 0;
+  justify-content: center;
+  align-items: center; /* Vertically centers the text */
+  z-index: 200;
+  background-clip: text;
+  -webkit-background-clip: text;
+  background-image: url(${cobraImage1}); /* Cobra image for text fill */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: transparent; /* Prevent fill color */
+  animation: fadeInTextBackground 5s forwards, fadeOutText 1s forwards 5s;
+  white-space: nowrap; /* Prevent text from wrapping to the next line */
+  flex-flow: column wrap;
 
-     @media (min-width: 768px) {
-      display: flex;
-      flex-flow: row wrap;
-    }
+    @media (min-width: 768px) {
+    display: flex;
+    flex-flow: row wrap;
+  }
 
 
   
@@ -199,6 +218,8 @@ ul li {
 #text {
     position: absolute;
     font-size: 4em;
+    width: 100%;
+    text-align: center;
     color: #fff;
     text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.4);
     top: 50%;
@@ -212,8 +233,8 @@ ul li {
       font-size: 5em;
     }
     @media (min-width: 1200px) {
-      top: 35%;
-      font-size: 8em;
+      top: 60%;
+      font-size: 7em;
     }
 
 }
@@ -299,23 +320,75 @@ ul li:nth-child(6) {
 .main-feature-container {
   position: relative;
   display: flex;
+  flex-direction: column;
   width: 100%;
   justify-content: center;
   align-items: center;
   margin: 16px;
+
+  @media (min-width: 768px) {
+      flex-direction: row;
+      
+  }
   
 }
 
-.feature-container {
+.feature {
   position: relative;
   display: flex;
-  width: 30%;
-  height: 100%;
-  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 32rem;
+  justify-content: space-between;
   align-items:center;
-  border: 1px white solid;
+  border-bottom: 1px white solid;
   padding: 16px;
-  margin: 8px;
+  margin: 16px;
+  border-radius: 8px;
+
+  @media (min-width: 768px) {
+      width: 30%;
+      box-shadow: 3px 3px 3px 3px rgba(255, 255, 255, 0.3);
+      
+  }
+}
+
+
+.feature__image-container {
+  display: inline-block;
+  vertical-align: middle;
+  width: 100%;
+  margin-bottom: 0.5rem; /* Adjust as necessary */
+}
+
+.feature__image {
+  vertical-align: top;
+  height: 22rem;
+  width: auto; /* Maintain aspect ratio */
+  
+}
+
+.feature__heading {
+  color: white;
+  text-align: center;
+}
+
+h2 {
+  width: 100%;
+  text-align: left; /* Align text */
+  margin: 0; /* Reset any default margins */
+  padding: 0.5em 0; /* Add some vertical padding for spacing */
+}
+
+p {
+   display: -webkit-box; /* Creates a flexible box model */
+  -webkit-box-orient: vertical; /* Defines the orientation */
+  -webkit-line-clamp: 3; /* Limits text to 3 lines */
+  overflow: hidden; /* Ensures extra text is hidden */
+  text-overflow: ellipsis; /* Adds ellipsis at the cut-off point */
+  line-height: 1.5; /* Consistent line height */
+  white-space: normal; /* Allow normal text wrapping */
+  color: white;
 }
 
 
