@@ -12,7 +12,22 @@ import coaching from '../assets/coaching.jpeg';
 
 const HomePage = () => {
   const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [mediaWidth, setMediaWidth] = useState(window.innerWidth);
 
+  useEffect(() => {
+    // Function to update media width
+    const handleResize = () => {
+      setMediaWidth(window.innerWidth);
+    };
+
+    // Add event listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     const images = [cobraImage1, cobraImage2, cobraImage3, cobraImage4, cobraImage5];
@@ -39,6 +54,13 @@ const HomePage = () => {
       const changeBackground = () => {
         bgElement.style.backgroundImage = `url(${images[index]})`; // Set background image
         bgElement.style.opacity = 1; // Make sure the background is visible
+        if (mediaWidth > 768) {
+          bgElement.style.backgroundPosition = "center";
+        } else {
+          //photos need their own position values 
+        
+          bgElement.style.backgroundPosition = "top right";
+        }
         index = (index + 1) % images.length; // Cycle through images
         bgElement.style.transition = "background-image 1s ease-in-out"; // Smooth transition between images
       };
@@ -179,7 +201,7 @@ ul {
   background-image: url(${cobraImage1}); /* Cobra image for text fill */
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
+  background-position: top right;
   color: transparent; /* Prevent fill color */
   animation: fadeInTextBackground 5s forwards, fadeOutText 1s forwards 5s;
   white-space: nowrap; /* Prevent text from wrapping to the next line */
@@ -188,6 +210,7 @@ ul {
     @media (min-width: 768px) {
     display: flex;
     flex-flow: row wrap;
+    background-position:center;
   }
 
 
@@ -364,9 +387,11 @@ ul li:nth-child(6) {
 .feature__image {
   vertical-align: top;
   height: 22rem;
-  width: auto; /* Maintain aspect ratio */
-  
+  width: 100%;
 }
+  .main-feature-container .feature:nth-of-type(3) .feature__image {
+    width: auto;
+  }
 
 .feature__heading {
   color: white;
