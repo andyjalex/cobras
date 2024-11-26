@@ -30,12 +30,15 @@ const Social = () => {
         </div>
         <div className="bottomContainer">
           <div className="socialContainer">
+            <h2 className="socialTitle">End of Season Tournament 24</h2>
             <InstagramEmbed embedCode={embedCode} />
           </div>
           <div className="socialContainer">
+            <h2 className="socialTitle">Things Are Brewing</h2>
             <InstagramEmbed embedCode={embedCode2} />
           </div>
           <div className="socialContainer">
+            <h2 className="socialTitle">Boscvegas</h2>
             <InstagramEmbed embedCode={embedCode3} />
           </div>
         </div>
@@ -62,9 +65,12 @@ const SocialWrapper = styled.div`
     display: flex;
     flex-wrap: wrap; /* Ensures the layout adjusts for smaller screens */
     gap: 20px; /* Space between socialContainer elements */
-    justify-content: flex-start; /* Centers the content */
-    padding: 20px; /* Adds some breathing room */
+    justify-content: center; /* Centers the content */
+    padding: 0 20px 20px 20px; /* Adds some breathing room */
 
+    @media (min-width: 992px) {
+      justify-content: flex-start;
+    }
   }
 
 .socialContainer {
@@ -74,10 +80,18 @@ const SocialWrapper = styled.div`
   overflow: hidden;
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
   animation: scaleIn 0.5s ease-in-out forwards;
   animation-delay: 0.7s;
 }
+
+.socialTitle {
+  margin-bottom: 1rem;
+  text-align:center;
+}
+
+
 iframe {
   width: 100%;
   height: 500px; /* or any appropriate height */
