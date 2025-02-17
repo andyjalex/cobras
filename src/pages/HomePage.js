@@ -1,129 +1,74 @@
-import React, {useState, useEffect} from 'react';
-import styled from 'styled-components';
-import Social from '../components/Social';
-import cobraImage1 from '../assets/cobra1.jpeg';
-import cobraImage2 from '../assets/cobra2.jpeg';
-import cobraImage3 from '../assets/cobra3.jpeg';
-import cobraImage4 from '../assets/cobra4.jpeg';
-import cobraImage5 from '../assets/cobra5.jpeg';
-import about from '../assets/about.jpg';
-import tournament from '../assets/tournament.jpeg';
-import coaching from '../assets/coaching.jpeg';
+import React, { useState, useEffect } from 'react'
+import styled from 'styled-components'
+import Social from '../components/Social'
+import Hero from '../components/Hero'
+import cobraImage1 from '../assets/cobra1.jpeg'
+import cobraImage2 from '../assets/cobra2.jpeg'
+import cobraImage3 from '../assets/cobra3.jpeg'
+import cobraImage4 from '../assets/cobra4.jpeg'
+import cobraImage5 from '../assets/cobra5.jpeg'
+import about from '../assets/about.jpg'
+import tournament from '../assets/tournament.jpeg'
+import coaching from '../assets/coaching.jpeg'
 
 const HomePage = () => {
-  const [imagesLoaded, setImagesLoaded] = useState(false);
-  const [mediaWidth, setMediaWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    // Function to update media width
-    const handleResize = () => {
-      setMediaWidth(window.innerWidth);
-    };
-
-    // Add event listener for window resize
-    window.addEventListener("resize", handleResize);
-
-    // Cleanup listener on component unmount
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  useEffect(() => {
-    const images = [cobraImage1, cobraImage2, cobraImage3, cobraImage4, cobraImage5];
-    let loadedCount = 0;
-
-    images.forEach((src) => {
-      const img = new Image();
-      img.src = src;
-      img.onload = () => {
-        loadedCount++;
-        if (loadedCount === images.length) {
-          setImagesLoaded(true);
-        }
-      };
-    });
-  }, []);
-
-  useEffect(() => {
-    if (imagesLoaded) {
-      const bgElement = document.querySelector(".shared-background");
-      let index = 0;
-      const images = [cobraImage1, cobraImage2, cobraImage3, cobraImage4, cobraImage5];
- 
-      const changeBackground = () => {
-        bgElement.style.backgroundImage = `url(${images[index]})`; // Set background image
-        bgElement.style.opacity = 1; // Make sure the background is visible
-        if (mediaWidth > 768) {
-          bgElement.style.backgroundPosition = "center";
-        } else {
-          //photos need their own position values 
-        
-          bgElement.style.backgroundPosition = "top right";
-        }
-        index = (index + 1) % images.length; // Cycle through images
-        bgElement.style.transition = "background-image 1s ease-in-out"; // Smooth transition between images
-      };
-  
-      const interval = setInterval(changeBackground, 4000); // Change every 4 seconds
-  
-      return () => clearInterval(interval); // Cleanup on unmount
-    }
-  }, [imagesLoaded]);
-
   return (
-      <Wrapper imagesLoaded={imagesLoaded}>
+    <Wrapper>
       <div className="App">
-      
-      <section className="sec1 ">
-      <div className ="overlay"></div>
-      <div className="shared-background">
-        <ul>
-          <li>C</li>
-          <li>O</li>
-          <li>B</li>
-          <li>R</li>
-          <li>A</li>
-          <li>S</li>
-        </ul>
-        <h2 id="text">COBRAS BEACH 
-        VOLLEYBALL CLUB</h2>
-      </div>
-      </section>
-      <Social />
-      <section className="sec3">
-        <div className="main-feature-container">
-          <div className="feature">
-            <h2 className="feature__heading">About us</h2>
-            <img src={about} alt="about" className="feature__image"/>
-            <div className="feature__caption">
-              <p className="feature__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-              <a href="#">read more</a>
+        <Hero mediaWidth />
+
+        <Social />
+        <section className="sec3">
+          <div className="main-feature-container">
+            <div className="feature">
+              <h2 className="feature__heading">About us</h2>
+              <img src={about} alt="about" className="feature__image" />
+              <div className="feature__caption">
+                <p className="feature__description">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                  irure dolor in reprehenderit in voluptate velit esse cillum
+                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                  cupidatat non proident, sunt in culpa qui officia deserunt
+                  mollit anim id est laborum.
+                </p>
+                <a href="#">read more</a>
+              </div>
+            </div>
+            <div className="feature">
+              <h2 className="feature__heading">Tournaments</h2>
+              <img src={tournament} className="feature__image" />
+              <div className="feature__caption">
+                <p className="feature__description">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                  irure dolor in reprehenderit in voluptate velit esse cillum
+                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                  cupidatat non proident, sunt in culpa qui officia deserunt
+                  mollit anim id est laborum.
+                </p>
+                <a href="/tournaments">read more</a>
+              </div>
             </div>
 
-          </div>
-          <div className="feature">
-            <h2 className="feature__heading">Tournaments</h2>
-            <img src={tournament} className="feature__image"/>
-            <div className="feature__caption">
-              <p className="feature__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-              <a href="/tournaments">read more</a>
+            <div className="feature">
+              <h2 className="feature__heading">Coaching</h2>
+              <img src={coaching} className="feature__image" />
+              <div className="feature__caption">
+                <p className="feature__description">
+                  Coaching is something we would love to offer in the near
+                  future.{' '}
+                </p>
+              </div>
             </div>
           </div>
-          
-          <div className="feature">
-            <h2 className="feature__heading">Coaching</h2>
-            <img src={coaching} className="feature__image"/>
-            <div className="feature__caption">
-              <p className="feature__description">Coaching is something we would love to offer in the near future. </p>
-              
-            </div>
-          </div> 
-        </div>
-      </section>
+        </section>
       </div>
-
-      </Wrapper>
+    </Wrapper>
   )
 }
 
@@ -393,12 +338,13 @@ ul li:nth-child(6) {
   width: 280%;
   height: 205%;
   background-color: #2d3436;
-  opacity: 0.8;
+  opacity: 0.0;
   transition: all 0.35s;
   transform: translate(550px, 300px) rotate(45deg)
 }
 .feature:hover:before {
-  transform: translate(-80px, -200px) rotate(45deg)
+  transform: translate(-80px, -200px) rotate(45deg);
+  opacity: 0.8;
 }
 
 
@@ -460,12 +406,14 @@ h2 {
   color: white;
   margin-top: 64px;
   transition: all .25s;
+  opacity: 0.0;
 		transform: translate(-500px, 300px);
 }
 
 .feature:hover p {
 	transform: translate(0,0);
 	transition-delay: 0.4s;
+  opacity: 1;
 }
 
 .feature a{
@@ -491,4 +439,4 @@ h2 {
 
 `
 
-export default HomePage;
+export default HomePage
