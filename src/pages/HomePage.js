@@ -6,68 +6,63 @@ import Hero from '../components/Hero'
 import about from '../assets/about.jpg'
 import tournament from '../assets/tournament.jpeg'
 import coaching from '../assets/coaching.jpeg'
-
+import { Navbar } from '../components'
 
 const HomePage = () => {
-  
-
   return (
     <Wrapper>
-      <div className="App">
-        <Ball />
-        <Hero mediaWidth />
+      <Navbar fixed={true}/>
+      <Ball />
+      <Hero mediaWidth />
 
-        <Social />
-        <section className="sec3">
-          <div className="main-feature-container">
-            <div className="feature">
-              <h2 className="feature__heading">About us</h2>
-              <img src={about} alt="about" className="feature__image" />
-              <div className="feature__caption">
-                <p className="feature__description">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                  irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                  cupidatat non proident, sunt in culpa qui officia deserunt
-                  mollit anim id est laborum.
-                </p>
-                <a href="#">read more</a>
-              </div>
-            </div>
-            <div className="feature">
-              <h2 className="feature__heading">Tournaments</h2>
-              <img src={tournament} className="feature__image" />
-              <div className="feature__caption">
-                <p className="feature__description">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                  irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                  cupidatat non proident, sunt in culpa qui officia deserunt
-                  mollit anim id est laborum.
-                </p>
-                <a href="/tournaments">read more</a>
-              </div>
-            </div>
-
-            <div className="feature">
-              <h2 className="feature__heading">Coaching</h2>
-              <img src={coaching} className="feature__image" />
-              <div className="feature__caption">
-                <p className="feature__description">
-                  Coaching is something we would love to offer in the near
-                  future.{' '}
-                </p>
-              </div>
+      <Social />
+      <section className="sec3">
+        <div className="main-feature-container">
+          <div className="feature">
+            <h2 className="feature__heading">About us</h2>
+            <img src={about} alt="about" className="feature__image" />
+            <div className="feature__caption">
+              <p className="feature__description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+              <a href="#">read more</a>
             </div>
           </div>
-        </section>
-      </div>
+          <div className="feature">
+            <h2 className="feature__heading">Tournaments</h2>
+            <img src={tournament} className="feature__image" />
+            <div className="feature__caption">
+              <p className="feature__description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+              <a href="/tournaments">read more</a>
+            </div>
+          </div>
+
+          <div className="feature">
+            <h2 className="feature__heading">Coaching</h2>
+            <img src={coaching} className="feature__image" />
+            <div className="feature__caption">
+              <p className="feature__description">
+                Coaching is something we would love to offer in the near
+                future.{' '}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
     </Wrapper>
   )
 }
@@ -118,9 +113,9 @@ const Wrapper = styled.section`
     height: 32rem;
     justify-content: space-between;
     align-items: center;
-    
+
     margin: 16px;
-    
+
     overflow: hidden;
 
     @media (min-width: 768px) {

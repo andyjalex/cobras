@@ -180,6 +180,9 @@ const HeroWrapper = styled.section`
     -webkit-text-stroke: 5px #fff; /* White outline stroke */
     animation: fadeInTextBackground 4s forwards;
 
+     font-family: 'Graphik', sans-serif;
+    font-weight: bold;
+
     // Existing styles...
     @media (max-width: 768px) {
       font-size: 10em;
