@@ -89,6 +89,7 @@ const Wrapper = styled.section`
 
   .sec3 {
     background-color: #333;
+    min-height: 60vh;
   }
 
   .main-feature-container {
@@ -115,7 +116,6 @@ const Wrapper = styled.section`
     align-items: center;
 
     margin: 16px;
-
     overflow: hidden;
 
     @media (min-width: 768px) {

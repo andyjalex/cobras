@@ -2,12 +2,12 @@ import React, { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import tournament from '../assets/tournament.jpeg'
 import { Navbar } from '../components'
-
+import { CupData, TournamentData } from '../utils/constants'
 
 const TournamentsPage = () => {
   return (
     <Wrapper>
-      <Navbar fixed={false}/>
+      <Navbar fixed={false} />
       <section className="sec1">
         <div className="container">
           <div className="main-feature-continer">
@@ -29,14 +29,36 @@ const TournamentsPage = () => {
             </div>
           </div>
           <div className="right-side-bar">
-            <h2 id="sub-title">The Cobra Cup</h2>
-            <div className="cup-card">
-              Cup 2024</div>
-            <div className="cup-card">Cup 2023</div>
-            <div className="cup-card">Cup 2022</div>
-            <div className="cup-card">Cup 2021</div>
-            <div className="cup-card">Cup 2020</div>
+            <div className="side-feature">
+              <h2 id="sub-title">The Cobra Cup</h2>
+              {CupData.map((item) => {
+                return (
+                  <div className="cup-card">
+                    <h2>{item.year}</h2>
+                    <p className="feature__description">
+                      Winners: {item.text1}
+                    </p>
+                    <p className="feature__description">
+                      Runners up: {item.text2}
+                    </p>
+                  </div>
+                )
+              })}
+            </div>
           </div>
+        </div>
+      </section>
+      <section className="sec2">
+        <div className="bottom-container">
+          {TournamentData.map((item) => {
+            return (
+              <div className="tournament-card">
+                <h2>{item.title}</h2>
+                <img className="tournament__image" src={tournament}></img>
+                <p className="feature__description">{item.description}</p>
+              </div>
+            )
+          })}
         </div>
       </section>
     </Wrapper>
@@ -55,24 +77,34 @@ const Wrapper = styled.section`
     margin: 0 auto;
     background: transparent;
     overflow: hidden;
-    background-color: #DCC9B4
+    background-color: #dcc9b4;
   }
-  .container{ 
+  .container {
     padding: 10px;
     display: grid;
     gap: 2rem;
-    place-items: center; 
- 
+    place-items: center;
+
     max-width: 95vw; /* Allow more space on smaller screens */
     grid-template-columns: 1fr; /* Stack items */
-  
+    @media (min-width: 768px) {
+      max-width: 80vw;
+      grid-template-columns: 2fr 1fr;
+    }
   }
-  @media (min-width: 768px) {
-  .container {
-     max-width: 80vw;
-    grid-template-columns: 2fr 1fr;
+
+  .bottom-container {
+    padding: 10px;
+    display: grid;
+    gap: 2rem;
+    max-width: 95vw; /* Allow more space on smaller screens */
+    grid-template-columns: 1fr; /* Stack items */
+    @media (min-width: 768px) {
+      max-width: 80vw;
+      grid-template-columns: repeat(3, 1fr);;
+    }
   }
-  }
+
   .main-feature-continer {
     position: relative;
     display: flex;
@@ -81,17 +113,15 @@ const Wrapper = styled.section`
     align-items: center;
     width: 100%;
     margin: 16px;
-
-    }
+  }
   #title {
     position: absolute;
     top: 10%;
     font-size: 4em;
     text-transform: uppercase;
-     font-family: 'Graphik', sans-serif;
+    font-family: 'Graphik', sans-serif;
     font-weight: bold;
-
-  } 
+  }
   .feature {
     position: relative;
     display: flex;
@@ -101,38 +131,33 @@ const Wrapper = styled.section`
     align-items: center;
     margin: 16px;
     margin-top: 64px;
-overflow: hidden;
-         
+    overflow: hidden;
+    background-color: white;
 
     @media (min-width: 768px) {
-      
       width: 100%;
       border: 2px solid black;
-
-      border-radius: 8px;
+      border-radius: 12px;
       //box-shadow: 3px 3px 3px 3px rgba(255, 255, 255, 0.3);
     }
   }
-   .feature__image {
+  .feature__image {
     vertical-align: top;
-    
-    object-fit: cover; 
-        width: 100%;
+    object-fit: cover;
+    width: 100%;
     height: 100%;
   }
   .right-side-bar {
     position: relative;
-    display: flex ;
+    display: flex;
+    width: 100%;
     flex: 1;
     flex-direction: column;
-    justtify-content: center
     align-items: center;
-    border: 1px solid #979797;  
     padding: 10px;
     @media (min-width: 768px) {
       width: 100%;
-      border: 2px solid black;
-      border-radius: 8px;
+      height: 100%;
     }
   }
   h2 {
@@ -159,17 +184,30 @@ overflow: hidden;
     color: black;
     margin-top: 64px;
     opacity: 1;
-
+  }
+  .side-feature {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    margin: 16px;
+    margin-top: 64px;
   }
 
   .cup-card {
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 100%;
     justify-content: space-between;
     align-items: center;
     margin: 16px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 12px;
+    width: 100%;
   }
 
   #sub-title {
@@ -177,13 +215,29 @@ overflow: hidden;
     font-size: 2.5em;
     text-transform: uppercase;
   }
-  .right-side-bar  h2 {
+  .right-side-bar h2 {
     width: 100%;
-     font-family: 'Graphik', sans-serif;
-  font-weight: bold;
+    font-family: 'Graphik', sans-serif;
+    font-weight: bold;
   }
-  
 
-
+  .tournament-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 16px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 12px;
+    width: 100%;
+  }
+  .tournament__image {
+    vertical-align: top;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
 `
 export default TournamentsPage
