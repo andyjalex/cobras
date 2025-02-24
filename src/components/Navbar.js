@@ -4,9 +4,11 @@ import { FaBars } from 'react-icons/fa6'
 import logo from '../assets/logo.svg'
 import { Link } from 'react-router-dom'
 
-const Navbar = () => {
+const Navbar = ({fixed}) => {
 
   const [isScrollingDown, setIsScrollingDown] = useState(false);
+
+  const position = fixed ? 'fixed': 'relative';
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -29,7 +31,7 @@ const Navbar = () => {
 
 
   return (
-    <Wrapper className={isScrollingDown ? 'hide-navbar': ''}>
+    <NavWrapper fixed={fixed} className={isScrollingDown ? 'hide-navbar': ''}>
         <div className="nav-center">
         <div className="nav-header">
           <Link className="main-header__brand" to='/'>
@@ -50,12 +52,12 @@ const Navbar = () => {
         </ul>
 
         </div>
-    </Wrapper>
+    </NavWrapper>
   )
 }
 
-const Wrapper = styled.section`
-    position: fixed;
+const NavWrapper = styled.nav`
+    position: ${(props) => (props.fixed ? 'fixed' : 'relative')};
     top: 0;
     width: 100%;
     padding: 0;
@@ -63,10 +65,11 @@ const Wrapper = styled.section`
     align-items: center;
     justify-content: center;
     height: 5rem;
-    z-index: 101;
-    transition: transform 0.3s ease-in-out;
+    background-color: #000;
+    z-index: 102;
+    transition: ${(props) => (props.fixed ? 'transform 0.3s ease-in-out': 'none')};
     &.hide-navbar {
-      transform: translateY(-100%);
+      transform: ${(props) => (props.fixed ? 'translateY(-100%)' : 'none')};
     }
     .nav-center {
       width: 90vw;

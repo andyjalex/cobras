@@ -7,7 +7,7 @@ function App() {
   return (
     <Router>
            
-        <Navbar />
+        
         <Routes>
             <Route exact path="/" element={<Home />} />
             <Route path="/tournaments" element={<Tournaments />} />
