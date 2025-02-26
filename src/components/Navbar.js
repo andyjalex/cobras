@@ -1,13 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import { FaBars } from 'react-icons/fa6'
-import logo from '../assets/logo.svg'
+import logo from '../assets/logo.png'
 import { Link } from 'react-router-dom'
+import { useProductsContext } from '../context/products_context'
 
 const Navbar = ({fixed}) => {
 
   const [isScrollingDown, setIsScrollingDown] = useState(false);
-
+  const {openSidebar}= useProductsContext()
   const position = fixed ? 'fixed': 'relative';
 
   useEffect(() => {
@@ -38,7 +39,7 @@ const Navbar = ({fixed}) => {
             <img src={logo} alt='COBRAS' />
 
           </Link>
-          <button type="button" className="nav-toggle">
+          <button type="button" className="nav-toggle" onClick={openSidebar}>
             <FaBars />
           </button>
         </div>
