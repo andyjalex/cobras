@@ -69,7 +69,7 @@ const Hero = () => {
   }, [imagesLoaded, mediaWidth])
 
   return (
-    <HeroWrapper>
+    <HeroWrapper mediaWidth={mediaWidth}>
       <section className="sec1">
         <div className="overlay"></div>
         <div className="shared-background">
@@ -128,7 +128,6 @@ const HeroWrapper = styled.section`
     z-index: 99;
     animation: fadeInBackground 0.1s forwards;
     animation-delay: 3s;
-    /*transition: background-image 1s ease-in-out, opacity 1s ease-in-out;  Add transition for opacity too */
   }
 
   .sec1 {
@@ -142,7 +141,7 @@ const HeroWrapper = styled.section`
     position: absolute;
     height: 100vh; /* Make the text background take up full screen height */
     width: 100%; /* Ensure the width matches */
-    left: 0;
+    left: calc(${(props) => props.mediaWidth / 2}px - 4em);
     top: 0;
     margin: 0;
     padding: 0;
@@ -161,12 +160,13 @@ const HeroWrapper = styled.section`
       fadeInTextBackground 5s forwards,
       fadeOutText 1s forwards 5s;
     white-space: nowrap; /* Prevent text from wrapping to the next line */
-    flex-flow: column wrap;
+    flex-flow: row wrap;
 
     @media (min-width: 768px) {
       display: flex;
       flex-flow: row wrap;
       background-position: center;
+      left: 0;
     }
   }
 

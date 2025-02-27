@@ -165,7 +165,7 @@ const Wrapper = styled.section`
     justify-content: space-between;
     align-items: center;
     margin: 16px;
-    margin-top: 64px;
+    
     overflow: hidden;
     background-color: white;
 
@@ -215,7 +215,9 @@ const Wrapper = styled.section`
     padding: 10px;
     @media (min-width: 768px) {
       width: 100%;
-      height: 100%;
+      max-height: 100vh;
+      overflow-x: hidden;
+            overflow-y: auto;
     }
   }
   h2 {
@@ -234,7 +236,7 @@ const Wrapper = styled.section`
     align-items: center;
     width: 100%;
     margin: 16px;
-    margin-top: 64px;
+    
   }
 
   .side-feature__header {
@@ -298,13 +300,13 @@ const Wrapper = styled.section`
   }
   #right-title {
     position: relative;
-    font-size: 3em;
+    font-size: 2em;
     text-transform: uppercase;
   }
 
   #sub-title {
     position: relative;
-    font-size: 2.5em;
+    font-size: 2em;
     text-transform: uppercase;
   }
   .right-side-bar h2 {

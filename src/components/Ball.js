@@ -18,17 +18,28 @@ const Ball = () => {
 
   // Initial ball positions
   const [balls, setBalls] = useState([
-    createBall(50, 100),
-
-    createBall(400, 300),
-    createBall(400, 400),
-    createBall(400, 500),
-    createBall(500, 600),
-    createBall(500, 700),
-    createBall(600, 800),
-    createBall(700, 300),
+    // createBall(50, 0),
+    // createBall(200, 0),
+    // createBall(420, 0),
+    // createBall(500, 0),
+    // createBall(600, 0),
+    // createBall(700, 0),
+    // createBall(800, 0),
+    // createBall(900, 0),
+    // createBall(1000, 0),
+    // createBall(1100, 100),
+    createBall(100,75),
+    createBall(50, 50),
+    createBall(200, 100),
+    createBall(420,50),
+    createBall(500, 100),
+    createBall(600, 50),
     createBall(700, 100),
-    createBall(700, 200),
+    createBall(800, 50),
+    createBall(900, 100),
+    createBall(1000, 50),
+    createBall(1100, 100),
+
   ])
 
   // Update window size on resize
@@ -108,12 +119,18 @@ const Ball = () => {
             newBall.vy *= 0.9 // Stronger vertical damping
             
             
-            if (Math.abs(newBall.vy) < 3) { // Threshold for low velocity
+            if (Math.abs(newBall.vy) < 5) { // Threshold for low velocity
+
+              console.log('in here')
               newBall.vy = 0 // Stop bouncing if the velocity is very small
             }
 
             
           }
+          
+          // console.log('math vy',Math.abs(newBall.vy))
+          // console.log('vy',newBall.vy)
+          // console.log('y',newBall.y )
           
 
           // Store current position for future comparison
