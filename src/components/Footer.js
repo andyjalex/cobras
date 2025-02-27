@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import logo from '../assets/logo.svg'
+import logo from '../assets/logo.png'
 
 const Footer = () => {
   return (
@@ -58,15 +58,32 @@ const Wrapper = styled.section`
   .mainSection {
     display: flex;
     justify-content: space-between;
-    margin: 2rem 4rem;
+    margin: auto;
     width: 100%;
     flex-direction: column;
   }
   .leftSide {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1em;
   }
   .rightSide {
+  
+     display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1em;
+  }
+  .main-header__brand {
     display: flex;
+    color: #0e4f1f;
+    text-decoration: none;
+    font-weight: bold;
+    vertical-align: middle;
+  }
+  .main-header__brand img {
+    height: 3rem;
   }
   h3 {
     color: white;
@@ -94,7 +111,7 @@ const Wrapper = styled.section`
 
   @media (min-width: 768px) {
     flex-direction: column;
-    padding: 2rem;
+
     text-align: center;
 
     .mainSection {
