@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback } from 'react';
 import styled from 'styled-components';
 import { FaBars } from 'react-icons/fa6'
 import logo from '../assets/logo.png'
@@ -11,28 +11,38 @@ const Navbar = ({fixed}) => {
   const {openSidebar}= useProductsContext()
   const position = fixed ? 'fixed': 'relative';
 
-  useEffect(() => {
+  const handleScroll = useCallback(() => {
     let lastScrollY = window.scrollY;
+    let ticking = false;
+    const threshold = 50;
 
-    const handleScroll = () => {
-      if (window.scrollY > lastScrollY) {
-        setIsScrollingDown(true);
-      } else {
-        setIsScrollingDown(false);
+    return () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          if (window.scrollY - lastScrollY > threshold ) {
+            console.log('scrolling down')
+            setIsScrollingDown(true);
+          } else if (lastScrollY - currentScrollY > threshold) {
+            setIsScrollingDown(false);
+          }
+          lastScrollY = window.scrollY;
+          ticking = false;
+        });
+        ticking = true;
       }
-      lastScrollY = window.scrollY;
-      
-    }
+    };
+}, []);
+  useEffect(() => {
+    const scrollHandler = handleScroll();
+    window.addEventListener('scroll', scrollHandler);
+    return () => window.removeEventListener('scroll', scrollHandler);
+  }, [handleScroll]);
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-
-  
-  }, [])
 
 
   return (
-    <NavWrapper fixed={fixed} className={isScrollingDown ? 'hide-navbar': ''}>
+    <NavWrapper fixed={position} className={isScrollingDown ? 'hide-navbar': ''}>
         <div className="nav-center">
         <div className="nav-header">
           <Link className="main-header__brand" to='/'>
