@@ -121,7 +121,7 @@ const Ball = () => {
             
             if (Math.abs(newBall.vy) < 5) { // Threshold for low velocity
 
-              console.log('in here')
+    
               newBall.vy = 0 // Stop bouncing if the velocity is very small
             }
 
